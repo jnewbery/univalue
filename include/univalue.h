@@ -76,8 +76,8 @@ public:
     bool exists(const std::string& key) const { size_t i; return findKey(key, i); }
 
     bool isNull() const { return (typ == VNULL); }
-    bool isTrue() const { return (typ == VBOOL) && (val == "1"); }
-    bool isFalse() const { return (typ == VBOOL) && (val != "1"); }
+    bool isTrue() const { return (typ == VBOOL) && (val == "true"); }
+    bool isFalse() const { return (typ == VBOOL) && (val == "false"); }
     bool isBool() const { return (typ == VBOOL); }
     bool isStr() const { return (typ == VSTR); }
     bool isNum() const { return (typ == VNUM); }

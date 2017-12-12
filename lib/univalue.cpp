@@ -32,8 +32,7 @@ bool UniValue::setBool(bool val_)
 {
     clear();
     typ = VBOOL;
-    if (val_)
-        val = "1";
+    val = val_ ? "true": "false";
     return true;
 }
 

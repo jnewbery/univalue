@@ -55,7 +55,7 @@ string UniValue::write(unsigned int prettyIndent,
         s += val;
         break;
     case VBOOL:
-        s += (val == "1" ? "true" : "false");
+        s += val;
         break;
     }
 
