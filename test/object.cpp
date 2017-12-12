@@ -262,6 +262,12 @@ void univalue_object()
     strKey = "temperature";
     CHECK(obj.pushKV(strKey, (double) 90.012));
 
+    strKey = "moon";
+    CHECK(obj.pushKV(strKey, true));
+
+    strKey = "spoon";
+    CHECK(obj.pushKV(strKey, false));
+
     UniValue obj2(UniValue::VOBJ);
     CHECK(obj2.pushKV("cat1", 9000));
     CHECK(obj2.pushKV("cat2", 12345));
@@ -269,7 +275,7 @@ void univalue_object()
     CHECK(obj.pushKVs(obj2));
 
     CHECK_EQUAL(obj.empty(), false);
-    CHECK_EQUAL(obj.size(), 9);
+    CHECK_EQUAL(obj.size(), 11);
 
     CHECK_EQUAL(obj["age"].getValStr(), "100");
     CHECK_EQUAL(obj["first"].getValStr(), "John");
@@ -278,6 +284,8 @@ void univalue_object()
     CHECK_EQUAL(obj["time"].getValStr(), "3600");
     CHECK_EQUAL(obj["calories"].getValStr(), "12");
     CHECK_EQUAL(obj["temperature"].getValStr(), "90.012");
+    CHECK_EQUAL(obj["moon"].getValStr(), "true");
+    CHECK_EQUAL(obj["spoon"].getValStr(), "false");
     CHECK_EQUAL(obj["cat1"].getValStr(), "9000");
     CHECK_EQUAL(obj["cat2"].getValStr(), "12345");
 
@@ -290,6 +298,8 @@ void univalue_object()
     CHECK(obj.exists("time"));
     CHECK(obj.exists("calories"));
     CHECK(obj.exists("temperature"));
+    CHECK(obj.exists("moon"));
+    CHECK(obj.exists("spoon"));
     CHECK(obj.exists("cat1"));
     CHECK(obj.exists("cat2"));
 
@@ -303,6 +313,8 @@ void univalue_object()
     objTypes["time"] = UniValue::VNUM;
     objTypes["calories"] = UniValue::VNUM;
     objTypes["temperature"] = UniValue::VNUM;
+    objTypes["moon"] = UniValue::VBOOL;
+    objTypes["spoon"] = UniValue::VBOOL;
     objTypes["cat1"] = UniValue::VNUM;
     objTypes["cat2"] = UniValue::VNUM;
     CHECK(obj.checkObject(objTypes));
