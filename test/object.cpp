@@ -236,6 +236,21 @@ BOOST_AUTO_TEST_CASE(univalue_array)
     BOOST_CHECK_EQUAL(arr[9].getValStr(), "1");
     BOOST_CHECK_EQUAL(arr[9].getType(), UniValue::VBOOL);
 
+    // Test that range-based for loops work as expected
+    int i{0};
+    for (auto& element : arr) {
+        BOOST_CHECK_EQUAL(element.getValStr(), arr[i].getValStr());
+        ++i;
+    }
+
+    // Test that range-based for loops work for const arrays
+    const auto carr = arr;
+    i = 0;
+    for (const auto& element : carr) {
+        BOOST_CHECK_EQUAL(element.getValStr(), carr[i].getValStr());
+        ++i;
+    }
+
     BOOST_CHECK_EQUAL(arr[999].getValStr(), "");
 
     arr.clear();
